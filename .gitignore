@@ -34,6 +34,11 @@ dist/img-cropper-test-app.js.map
 .idea/*
 *.iml
 
+#################
+## Visual Studio Code
+#################
+.vscode
+
 ############
 ## Windows
 ############

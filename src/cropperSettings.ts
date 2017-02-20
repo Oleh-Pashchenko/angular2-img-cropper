@@ -11,6 +11,7 @@ export interface ICropperSettings {
     croppedWidth?: number;
     croppedHeight?: number;
     touchRadius?: number;
+    dragRadius?: number;
     cropperDrawSettings?: any;
     noFileInput?: boolean;
     allowedFilesRegex?: RegExp;
@@ -38,6 +39,8 @@ export class CropperSettings implements ICropperSettings {
 
     public cropperDrawSettings: CropperDrawSettings = new CropperDrawSettings();
     public touchRadius: number = 20;
+    public dragRadius: number = 20;
+
     public noFileInput: boolean = false;
 
     public fileType:string = "png";

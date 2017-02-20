@@ -1,8 +1,8 @@
-import {Handle} from "./handle";
-import {PointPool} from "./pointPool";
-import {Point} from "./point";
-import {CropperSettings} from "../cropperSettings";
-import {Bounds} from "./bounds";
+import { Handle } from "./handle";
+import { PointPool } from "./pointPool";
+import { Point } from "./point";
+import { CropperSettings } from "../cropperSettings";
+import { Bounds } from "./bounds";
 
 export class DragMarker extends Handle {
 
@@ -65,7 +65,8 @@ export class DragMarker extends Handle {
             ctx.lineTo(p.x + this.position.x, p.y + this.position.y);
         }
         ctx.closePath();
-        ctx.fillStyle = this.cropperSettings.cropperDrawSettings.strokeColor;
+        ctx.fillStyle = this.cropperSettings.cropperDrawSettings.dragMarkerVisible ?
+            this.cropperSettings.cropperDrawSettings.dragMarkerColor : "rgba(255,255,255,0)";
         ctx.fill();
     }
 
@@ -74,5 +75,4 @@ export class DragMarker extends Handle {
         this.setPosition(c.x, c.y);
         PointPool.instance.returnPoint(c);
     }
-
 }

@@ -44,6 +44,8 @@ this.cropperSettings1.minHeight = 100;
 this.cropperSettings1.rounded = false;
 
 this.cropperSettings1.cropperDrawSettings.strokeColor = 'rgba(255,255,255,1)';
+this.cropperSettings1.cropperDrawSettings.fillColor = 'rgba(255,255,255,0)';
+this.cropperSettings1.cropperDrawSettings.dragMarkerVisible = false;
 this.cropperSettings1.cropperDrawSettings.strokeWidth = 2;
 </code>
 </pre>
@@ -84,6 +86,8 @@ this.cropperSettings2.canvasHeight = 300;
 
 this.cropperSettings2.minWidth = 100;
 this.cropperSettings2.minHeight = 100;
+
+this.cropperSettings2.dragRadius = 100;
 
 this.cropperSettings2.rounded = true;
 this.cropperSettings2.minWithRelativeToResolution = false;
@@ -191,6 +195,8 @@ export class AppComponent extends Type {
         this.cropperSettings1.rounded = false;
 
         this.cropperSettings1.cropperDrawSettings.strokeColor = 'rgba(255,255,255,1)';
+        this.cropperSettings1.cropperDrawSettings.fillColor = 'rgba(255,255,255,0)';
+        this.cropperSettings1.cropperDrawSettings.dragMarkerVisible = false;
         this.cropperSettings1.cropperDrawSettings.strokeWidth = 2;
 
         this.cropperSettings1.keepAspect = true;
@@ -213,10 +219,12 @@ export class AppComponent extends Type {
         this.cropperSettings2.minWidth = 100;
         this.cropperSettings2.minHeight = 100;
 
+        this.cropperSettings2.dragRadius = 100;
+
         this.cropperSettings2.rounded = true;
         this.cropperSettings2.minWithRelativeToResolution = false;
 
-        this.cropperSettings2.cropperDrawSettings.strokeColor = 'rgba(255,255,255,1)';
+        this.cropperSettings2.cropperDrawSettings.strokeColor = 'rgba(1,255,255,1)';
         this.cropperSettings2.cropperDrawSettings.strokeWidth = 2;
         this.cropperSettings2.noFileInput = true;
 
