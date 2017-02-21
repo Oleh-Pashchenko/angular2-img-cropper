@@ -222,7 +222,7 @@ export class ImageCropper extends ImageCropperModel {
 
             for (let i = 0; i < this.markers.length; i++) {
                 marker = this.markers[i];
-                marker.draw(ctx);
+                marker.draw(ctx, i);
             }
             this.center.draw(ctx);
         } else {
@@ -250,13 +250,13 @@ export class ImageCropper extends ImageCropperModel {
             y = this.maxYClamp - bounds.height / 2;
         }
         this.tl.moveX(x - (bounds.width / 2));
-        this.tl.moveY(y - (bounds.height / 2));
         this.tr.moveX(x + (bounds.width / 2));
-        this.tr.moveY(y - (bounds.height / 2));
         this.bl.moveX(x - (bounds.width / 2));
-        this.bl.moveY(y + (bounds.height / 2));
         this.br.moveX(x + (bounds.width / 2));
-        this.br.moveY(y + (bounds.height / 2));
+        this.tl.moveY(y + (bounds.height / 2));
+        this.tr.moveY(y + (bounds.height / 2));
+        this.bl.moveY(y - (bounds.height / 2));
+        this.br.moveY(y - (bounds.height / 2));
         marker.setPosition(x, y);
     }
 

@@ -1,15 +1,18 @@
-import {Handle, IHandle} from "./handle";
-import {CropperSettings} from "../cropperSettings";
+import { Handle, IHandle } from "./handle";
+import { CropperSettings } from "../cropperSettings";
+import { CornerStyle } from '../cropperDrawSettings'
 
 export interface ICornerMarker extends IHandle {
     horizontalNeighbour: CornerMarker;
     verticalNeighbour: CornerMarker;
+    cornerIndex: number;
 }
 
 export class CornerMarker extends Handle implements ICornerMarker {
 
     public horizontalNeighbour: CornerMarker;
     public verticalNeighbour: CornerMarker;
+    public cornerIndex: number;
 
     constructor(x: number, y: number, radius: number, cropperSettings: CropperSettings) {
         super(x, y, radius, cropperSettings);
@@ -72,12 +75,77 @@ export class CornerMarker extends Handle implements ICornerMarker {
             vDirection = -1;
         }
         ctx.beginPath();
-        ctx.moveTo(this.position.x + this.offset.x, this.position.y + this.offset.y);
-        ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y);
-        ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y +
-            (sideLength * vDirection));
-        ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y + (sideLength * vDirection));
-        ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y);
+
+        switch (this.cropperSettings.cropperDrawSettings.cornerStyle) {
+            case CornerStyle.Arrow:
+                if (this.cornerIndex == 1 || this.cornerIndex == 2) {
+                    ctx.moveTo(this.position.x + this.offset.x, this.position.y + this.offset.y);
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y);
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y +
+                        (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y + (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y);
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection) + (sideLength * hDirection), this.position.y + this.offset.y);
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection) + (sideLength * hDirection), this.position.y + this.offset.y +
+                        (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y + (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y);
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection) + (sideLength * hDirection) + (sideLength * hDirection), this.position.y + this.offset.y);
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection) + (sideLength * hDirection) + (sideLength * hDirection), this.position.y + this.offset.y +
+                        (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection) + (sideLength * hDirection), this.position.y + this.offset.y + (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection) + (sideLength * hDirection), this.position.y + this.offset.y);
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y + (sideLength * hDirection));
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y + (sideLength * hDirection) +
+                        (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y + (sideLength * vDirection) + (sideLength * hDirection));
+                    ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y + (sideLength * hDirection));
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y + (sideLength * hDirection) + (sideLength * hDirection));
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y + (sideLength * hDirection) +
+                        (sideLength * vDirection) + (sideLength * hDirection));
+                    ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y + (sideLength * vDirection) + (sideLength * hDirection) + (sideLength * hDirection));
+                    ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y + (sideLength * hDirection) + (sideLength * hDirection));
+                }
+                if (this.cornerIndex == 0 || this.cornerIndex == 3) {
+                    ctx.moveTo(this.position.x + this.offset.x, this.position.y + this.offset.y);
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y);
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y +
+                        (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y + (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y);
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection) + (sideLength * hDirection), this.position.y + this.offset.y);
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection) + (sideLength * hDirection), this.position.y + this.offset.y +
+                        (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y + (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y);
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection) + (sideLength * hDirection) + (sideLength * hDirection), this.position.y + this.offset.y);
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection) + (sideLength * hDirection) + (sideLength * hDirection), this.position.y + this.offset.y +
+                        (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection) + (sideLength * hDirection), this.position.y + this.offset.y + (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection) + (sideLength * hDirection), this.position.y + this.offset.y);
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y - (sideLength * hDirection));
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y - (sideLength * hDirection) +
+                        (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y + (sideLength * vDirection) - (sideLength * hDirection));
+                    ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y - (sideLength * hDirection));
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y - (sideLength * hDirection) - (sideLength * hDirection));
+                    ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y - (sideLength * hDirection) - (sideLength * hDirection) +
+                        (sideLength * vDirection));
+                    ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y + (sideLength * vDirection) - (sideLength * hDirection) - (sideLength * hDirection));
+                    ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y - (sideLength * hDirection));
+                }
+                break;
+            default:
+                ctx.moveTo(this.position.x + this.offset.x, this.position.y + this.offset.y);
+                ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y);
+                ctx.lineTo(this.position.x + this.offset.x + (sideLength * hDirection), this.position.y + this.offset.y +
+                    (sideLength * vDirection));
+                ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y + (sideLength * vDirection));
+                ctx.lineTo(this.position.x + this.offset.x, this.position.y + this.offset.y);
+                break;
+        }
+
+
         ctx.closePath();
         ctx.fillStyle = this.cropperSettings.cropperDrawSettings.fillColor;
         ctx.fill();
@@ -113,7 +181,8 @@ export class CornerMarker extends Handle implements ICornerMarker {
         return this.verticalNeighbour;
     }
 
-    public draw(ctx: CanvasRenderingContext2D): void {
+    public draw(ctx: CanvasRenderingContext2D, cornerIndex: number): void {
+        this.cornerIndex = cornerIndex;
         this.drawCornerFill(ctx);
         this.drawCornerBorder(ctx);
     }

@@ -1,3 +1,5 @@
+import { CornerStyle } from '../src/cropperDrawSettings';
+import { createObservableResponse } from 'angular-in-memory-web-api';
 import { AfterViewInit } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Component, ViewChild, Type } from '@angular/core';
@@ -43,10 +45,11 @@ this.cropperSettings1.minHeight = 100;
 
 this.cropperSettings1.rounded = false;
 
-this.cropperSettings1.cropperDrawSettings.strokeColor = 'rgba(255,255,255,1)';
-this.cropperSettings1.cropperDrawSettings.fillColor = 'rgba(255,255,255,0)';
+this.cropperSettings1.cropperDrawSettings.strokeColor = 'rgba(255,255,255,0)';
+this.cropperSettings1.cropperDrawSettings.fillColor = 'rgba(255,255,255,1)';
 this.cropperSettings1.cropperDrawSettings.dragMarkerVisible = false;
 this.cropperSettings1.cropperDrawSettings.strokeWidth = 2;
+this.cropperSettings1.cropperDrawSettings.cornerStyle = CornerStyle.Arrow;
 </code>
 </pre>
     </tab>
@@ -194,10 +197,11 @@ export class AppComponent extends Type {
 
         this.cropperSettings1.rounded = false;
 
-        this.cropperSettings1.cropperDrawSettings.strokeColor = 'rgba(255,255,255,1)';
-        this.cropperSettings1.cropperDrawSettings.fillColor = 'rgba(255,255,255,0)';
+        this.cropperSettings1.cropperDrawSettings.strokeColor = 'rgba(255,255,255,0)';
+        this.cropperSettings1.cropperDrawSettings.fillColor = 'rgba(255,255,255,1)';
         this.cropperSettings1.cropperDrawSettings.dragMarkerVisible = false;
         this.cropperSettings1.cropperDrawSettings.strokeWidth = 2;
+        this.cropperSettings1.cropperDrawSettings.cornerStyle = CornerStyle.Arrow;
 
         this.cropperSettings1.keepAspect = true;
         this.cropperSettings1.preserveSize = false;

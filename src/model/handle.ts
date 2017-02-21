@@ -10,7 +10,7 @@ export interface IHandle {
     radius: number;
     cropperSettings: CropperSettings;
     setDrag(value: boolean): void;
-    draw(ctx: CanvasRenderingContext2D): void;
+    draw(ctx: CanvasRenderingContext2D, cornerIndex: number): void;
     setOver(over: boolean): void;
     touchInBounds(x: number, y: number): boolean;
 }
@@ -38,7 +38,7 @@ export class Handle implements IHandle {
         this.setOver(value);
     }
 
-    public draw(ctx: CanvasRenderingContext2D) {
+    public draw(ctx: CanvasRenderingContext2D, cornerIndex: number) {
         // this should't be empty
     }
 
