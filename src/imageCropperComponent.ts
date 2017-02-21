@@ -145,10 +145,10 @@ export class ImageCropperComponent implements AfterViewInit, OnChanges {
                     self.image.original = img;
                     let bounds = self.cropper.getCropBounds();
                     self.image.image = self.cropper.getCroppedImage().src;
-					if (newBounds != null) {
+					/*if (newBounds != null) {
                         bounds = newBounds;
                         self.cropper.setBounds(bounds);
-                    }
+                    }*/
                     self.onCrop.emit(bounds);
                 });
             }
